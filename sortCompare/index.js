@@ -33,3 +33,14 @@ class Player {
   for (let player of players) {
     console.log(player.name, player.score);
   }
+
+  /*
+     hasil output :
+
+        aleksa 150
+        amy 100
+        david 100
+        aakansha 75
+        heraldo 50
+
+  */
