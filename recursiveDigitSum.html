@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Digit Sum</title>
+</head>
+
+<script>
+    function digit(number) {
+    if(number.length === 1) {
+        return parseInt(number);
+    }
+
+    let sum = 0;
+    for (let i = 0; i < number.length; i++) {
+        sum += parseInt(number.charAt(i));
+    }
+
+    return digit(sum.toString())
+    }
+
+    function test() {
+        const nomor = document.getElementById("nomor").value;
+        const salinan = document.getElementById("salinan").value;
+        const x = nomor.repeat(salinan);
+        const result = digit(x);
+        document.getElementById("hasil").innerText = "hasil: " + result;
+    }
+</script>
+
+<body>
+    <h2>Recursive Digit Sum</h2>
+    <label for="string1">Masukkan nomor:</label>
+    <input type="text" id="nomor">
+
+    <label for="string2">jumlah salinan:</label>
+    <input type="number" id="salinan">
+
+    <button onclick="test()">Check</button>
+
+    <p id="hasil"></p>
+</body>
+</html>

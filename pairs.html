@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Pairs</title>
+</head>
+<script>
+    function find(k, arr) {
+        let r = 0;
+
+        function inner(arr) {
+            if (!arr.length) return;
+            const firstElement = arr[0];
+            const rest = arr.slice(1);
+
+            rest.forEach((e) => {
+                if (Math.abs(firstElement - e) === k) {
+                    r++;
+                }
+            });
+            inner(rest);
+        }
+
+        inner(arr);
+        return r;
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const selisih = parseInt(document.getElementById("selisih").value);
+        const inputArray = document.getElementById("input-array").value;
+        const array = inputArray.split(',').map(Number);
+
+        if (isNaN(selisih) || array.some(isNaN)) {
+            alert("Please enter valid numbers for Selisih and Array elements.");
+            return;
+        }
+
+        const result = find(selisih, array);
+        document.getElementById("result").textContent = `Number of Pairs: ${result}`;
+    }
+</script>
+<body>
+    <div style="margin-left: 560px;">
+        <h2>Find Pairs</h2>
+        <form onsubmit="handleSubmit(event)">
+            <label for="selisih">Masukkan jumlah selisih</label>
+            <br />
+            <input type="number" id="selisih" style="margin-bottom: 10px;">
+            <br />
+            <label for="input-array">masukkan beberapa angka</label>
+            <br />
+            <label for="">contoh : 1, 2, 3, 4, 5</label>
+            <br />
+            <input type="text" id="input-array" style="margin-bottom: 20px;">
+            <br />
+            <button type="submit">Find Pairs</button>
+        </form>
+        <p id="result"></p>
+    </div>
+</body>
+</html>

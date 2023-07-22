@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Two Strings Checker</title>
+</head>
+
+<script>
+    function twoStrings(s1, s2) {
+        // Membuat objek set untuk menyimpan karakter unik dari s1
+        const charSet = new Set(s1);
+
+        // Memeriksa setiap karakter di s2
+        for (let char of s2) {
+            // Jika karakter ditemukan di set charSet, berarti substring yang sama ditemukan
+            if (charSet.has(char)) {
+                return "YES";
+            }
+        }
+
+        // Jika tidak ada karakter yang sama ditemukan, kembalikan "NO"
+        return "NO";
+    }
+
+    function checkTwoStrings() {
+        const s1 = document.getElementById("string1").value;
+        const s2 = document.getElementById("string2").value;
+        const result = twoStrings(s1, s2);
+        document.getElementById("result").innerText = "Apakah ada huruf yang sama ?: " + result;
+    }
+</script>
+
+<body>
+    <h1>Two Strings Checker</h1>
+    <label for="string1">Masukkan kata pertama:</label>
+    <input type="text" id="string1">
+
+    <label for="string2">Masukkan kata kedua:</label>
+    <input type="text" id="string2">
+
+    <button onclick="checkTwoStrings()">Check</button>
+
+    <p id="result"></p>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Player Comparator</title>
+</head>
+<script>
+    class Player {
+        constructor(name, score) {
+            this.name = name;
+            this.score = score;
+        }
+    }
+
+    class Checker {
+        compare(a, b) {
+            if (a.score === b.score) {
+                return a.name.localeCompare(b.name); // Sort alphabetically ascending by name
+            } else {
+                return b.score - a.score; // Sort in order of decreasing score
+            }
+        }
+    }
+
+    function createPlayerArray() {
+        const playerCount = parseInt(document.getElementById("playerCount").value);
+        const players = [];
+
+        for (let i = 0; i < playerCount; i++) {
+            const name = prompt(`Masukkan nama pemain ke-${i + 1}:`);
+            const score = parseInt(prompt(`Masukkan skor untuk ${name}:`));
+            players.push(new Player(name, score));
+        }
+
+        const checker = new Checker();
+        players.sort(checker.compare);
+
+        // Display sorted result
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "<h2>Hasil Pengurutan:</h2>";
+        for (let player of players) {
+            resultDiv.innerHTML += `<p>${player.name}: ${player.score}</p>`;
+        }
+    }
+</script>
+<body>
+    <h1>Player Comparator</h1>
+    <p>Masukkan jumlah pemain:</p>
+    <input type="number" id="playerCount">
+    <button onclick="createPlayerArray()">Submit</button>
+
+    <div id="result"></div>
+</body>
+
+</html>
